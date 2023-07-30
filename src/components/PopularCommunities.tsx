@@ -37,6 +37,7 @@ export const PopularCommunities = async () => {
                 className: "w-full mt-4 mb-6",
               })}
               href={`/w/community/${community.name}`}
+              key={community.id}
             >
               {community.name}
             </Link>

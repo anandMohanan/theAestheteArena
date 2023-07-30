@@ -16,7 +16,6 @@ export async function POST(req: Request) {
       data: {
         postId,
         text,
-        replyToId,
         authorId: session.user.id,
       },
     });

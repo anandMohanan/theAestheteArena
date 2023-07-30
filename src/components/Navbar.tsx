@@ -16,7 +16,7 @@ export const Navbar = async () => {
           {/* <Icons.logo className="h-8 w-8 sm:h-6 sm:w-6  lg:h-4 lg:w-4" /> */}
           <Image src="/logo.png" alt="logo" width={40} height={40} />
           <p className="hidden text-zinc-700 text-sm font-medium md:block">
-            The Aesthete's Arena
+            The Aesthete Arena
           </p>
         </Link>
         <SearchBar />

@@ -41,7 +41,6 @@ const style = {
 
 export const EditorOutput = ({ content }: { content: any }) => {
   return (
-    // @ts-expect-error
     <Output
       data={content}
       style={style}

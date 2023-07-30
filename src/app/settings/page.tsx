@@ -25,7 +25,7 @@ const page = async ({}) => {
           user={{
             id: session.user.id,
             username: session.user.username || "",
-            image: session.user.image,
+            image: session.user.image || null,
           }}
         />
       </div>

@@ -7,7 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
-import { Post, PostComponent } from "./Post";
+import { PostComponent } from "./Post";
 export const PostFeed = ({
   initialPosts,
   communityName,
@@ -79,6 +79,7 @@ export const PostFeed = ({
               post={post}
               currentVote={currentVote}
               votesAmt={votesAmt}
+              key={post.id}
             />
           );
         }

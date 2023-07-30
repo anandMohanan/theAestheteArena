@@ -2,13 +2,8 @@
 
 import { formatTimeToNow } from "@/lib/utils";
 import { Post, User, Vote } from "@prisma/client";
-import {
-  DeleteIcon,
-  MessageSquare,
-  TrashIcon,
-  ArrowUpLeftSquare,
-} from "lucide-react";
-import Link from "next/link";
+import { MessageSquare, TrashIcon } from "lucide-react";
+
 import { useRef } from "react";
 import { EditorOutput } from "./EditorOutput";
 import { PostVoteClient } from "./postVote/PostVoteClient";
