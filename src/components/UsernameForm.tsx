@@ -36,7 +36,7 @@ import {
 import { AvatarFallback } from "@radix-ui/react-avatar";
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, "id" | "username" | "image">;
+  user: Pick<User, "id" | "username" | "image" | "name">;
 }
 
 type FormData = z.infer<typeof UsernameValidator>;
@@ -54,7 +54,8 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     },
   });
   const [avatarFile, setAvatarFile] = React.useState<unknown[]>();
-  const handleUpload = async (e) => {
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    // @ts-expect-error
     let file = Array.from(e.target.files);
     console.log(file);
     setAvatarFile(file);

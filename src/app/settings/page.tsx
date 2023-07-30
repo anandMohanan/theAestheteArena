@@ -26,6 +26,7 @@ const page = async ({}) => {
             id: session.user.id,
             username: session.user.username || "",
             image: session.user.image || null,
+            name: session.user.name || "",
           }}
         />
       </div>

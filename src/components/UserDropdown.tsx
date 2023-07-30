@@ -35,7 +35,7 @@ export const UserDropdown: FC<UserDropdownProps> = ({ user }) => {
       <DropdownMenuContent className="bg-white" align="end">
         <div className="flex items-center justify-start gp-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            {user.name && <p>{user.name}</p>} -{" "}
+            {user.name && <p>{user.name}</p>} - /{/** @ts-expect-error */}
             {user.username && <p className="font-medium">{user.username}</p>}
             {user.email && (
               <p className="w-[200px] truncate text-sm text-zinc-700">
