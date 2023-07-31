@@ -11,6 +11,11 @@ interface PageProps {
   };
 }
 
+export const metadata = {
+  title: "Taa - Community",
+  description: "Community page of Taa",
+};
+
 const page = async ({ params }: PageProps) => {
   const { slug } = params;
   const session = await getAuthSession();

@@ -3,8 +3,8 @@ import { authOptions, getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Settings",
-  description: "Manage account",
+  title: "Taa - Settings",
+  description: "Taa - Manage account",
 };
 
 const page = async ({}) => {

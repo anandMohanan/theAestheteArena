@@ -110,7 +110,7 @@ export const PostComponent = ({
           <hr />
           {post.authorId === session?.user.id ? (
             <a
-              className={`w-fit flex items-end gap-2 `}
+              className={`w-fit flex items-end gap-2 cursor-pointer `}
               onClick={() => deletePost({ postId: post.id })}
             >
               <TrashIcon className="h-4 w-4" />

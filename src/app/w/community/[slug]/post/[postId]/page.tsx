@@ -19,6 +19,11 @@ interface CommunityPostPageProps {
   };
 }
 
+export const metadata = {
+  title: "Taa - Post",
+  description: "Post information",
+};
+
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 

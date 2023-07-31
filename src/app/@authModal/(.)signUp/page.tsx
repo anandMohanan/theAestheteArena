@@ -3,6 +3,10 @@ import { SignIn } from "@/components/SignIn";
 import { SignUp } from "@/components/SignUp";
 import { FC } from "react";
 
+export const metadata = {
+  title: "Taa - SignUp",
+  description: "Sign up page, Taa",
+};
 const page: FC = () => {
   return (
     <div className=" fixed inset-0 bg-zinc-900/20 z-10">

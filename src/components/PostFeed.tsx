@@ -48,7 +48,6 @@ export const PostFeed = ({
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
   return (
     <ul className="flex flex-col col-span-2 space-y-6">
-      {communityName}
       {posts.map((post, i) => {
         const votesAmt = post.votes.reduce((acc, vote) => {
           if (vote.type === "UP") return acc + 1;

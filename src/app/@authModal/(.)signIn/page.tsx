@@ -2,6 +2,10 @@ import { CloseModal } from "@/components/CloseModal";
 import { SignIn } from "@/components/SignIn";
 import { FC } from "react";
 
+export const metadata = {
+  title: "Taa - SignIn",
+  description: "Sign in page, Taa",
+};
 const page: FC = () => {
   return (
     <div className=" fixed inset-0 bg-zinc-900/20 z-10">

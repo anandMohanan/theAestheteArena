@@ -21,17 +21,17 @@ export default async function Home() {
         <GeneralFeed />
 
         {/* subreddit info */}
-        <div className="overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
-          <div className="bg-emerald-100 px-6 py-4">
+        <div className="overflow-hidden h-fit   order-first md:order-last">
+          <div className="bg-deep-champagne px-6 py-2 ">
             <p className="font-semibold py-3 flex items-center gap-1.5">
               <HomeIcon className="h-4 w-4" />
               Home
             </p>
           </div>
-          <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+          <dl className="-my-3  bg-deep-champagne divide-y divide-primary-text px-6 py-4 text-sm leading-6">
             <div className="flex justify-between gap-x-4 py-3">
-              <p className="text-zinc-500">
-                Your personal Breadit frontpage. Come here to check in with your
+              <p className="text-black">
+                Your personal Taa frontpage. Come here to check in with your
                 favorite communities.
               </p>
             </div>

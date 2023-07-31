@@ -6,6 +6,12 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface signInPageProps {}
+
+export const metadata = {
+  title: "Taa - SignIn",
+  description: "Sign in page, Taa",
+};
+
 const SignInPage: FC<signInPageProps> = ({}) => {
   return (
     <div className="absolute inset-0">

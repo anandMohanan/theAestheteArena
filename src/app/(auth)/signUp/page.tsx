@@ -7,6 +7,11 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface signUpPageProps {}
+
+export const metadata = {
+  title: "Taa - SignUp",
+  description: "Sign up page, Taa",
+};
 const SignUpPage: FC<signUpPageProps> = ({}) => {
   return (
     <div className="absolute inset-0">

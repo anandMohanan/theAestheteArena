@@ -3,6 +3,11 @@ import { Button } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
+export const metadata = {
+  title: "Taa - Create Post",
+  description: "Create post page",
+};
+
 const page = async ({ params }: { params: { slug: string } }) => {
   const community = await db.community.findFirst({
     where: {
