@@ -10,10 +10,6 @@ import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 
-export const metadata = {
-  title: "Taa - Post",
-  description: "Taa - create post",
-};
 const Page = () => {
   const [communityName, setCommunityName] = useState<string>("");
   const router = useRouter();
