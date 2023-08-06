@@ -74,7 +74,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
         fileKey: res.fileKey,
       };
 
-      const { data } = await axios.patch(`/api/useravatar/`, payload);
+      const { data } = await axios.patch(`/api/user/useravatar/`, payload);
       return data;
     },
     onError: (err) => {
@@ -104,7 +104,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
       mutationFn: async ({ userId }: RemoveUseravatarRequest) => {
         const payload: RemoveUseravatarRequest = { userId };
 
-        const { data } = await axios.patch(`/api/removeavatar/`, payload);
+        const { data } = await axios.patch(`/api/user/removeavatar/`, payload);
         return data;
       },
       onError: (err) => {
@@ -133,7 +133,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     mutationFn: async ({ name }: FormData) => {
       const payload: FormData = { name };
 
-      const { data } = await axios.patch(`/api/username/`, payload);
+      const { data } = await axios.patch(`/api/user/username/`, payload);
       return data;
     },
     onError: (err) => {

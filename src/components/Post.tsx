@@ -41,7 +41,7 @@ export const PostComponent = ({
     mutationFn: async ({ postId }: DeletePostPayload) => {
       if (session?.user.id !== post.authorId) return;
       const payload: DeletePostPayload = { postId };
-      const { data } = await axios.patch(`/api/posts/delete`, payload);
+      const { data } = await axios.patch(`/api/community/post/delete`, payload);
       return data;
     },
     onError: () => {
@@ -52,12 +52,12 @@ export const PostComponent = ({
       });
     },
     onSuccess: async () => {
-      // router.refresh();
-      // return toast({
-      //   title: "Post deleted successfully",
-      //   description: "",
-      //   variant: "default",
-      // });
+      router.refresh();
+      return toast({
+        title: "Post deleted successfully",
+        description: "",
+        variant: "default",
+      });
     },
   });
   return (
