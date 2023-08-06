@@ -19,8 +19,6 @@ interface UserDropdownProps {
 }
 
 export const UserDropdown: FC<UserDropdownProps> = ({ user }) => {
-  console.log("file urlll", user.image);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

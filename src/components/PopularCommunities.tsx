@@ -24,12 +24,6 @@ export const PopularCommunities = async () => {
         </p>
       </div>
       <dl className="-my-3  divide-y bg-deep-champagne divide-primary-text px-6 py-4 text-sm leading-6">
-        <div className="flex justify-between gap-x-4 py-3">
-          <p className="text-zinc-500">
-            Your personal Breadit frontpage. Come here to check in with your
-            favorite communities.
-          </p>
-        </div>
         {communityNames.map((community) => {
           return (
             <Link

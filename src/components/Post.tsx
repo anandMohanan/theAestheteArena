@@ -7,13 +7,14 @@ import { MessageSquare, TrashIcon } from "lucide-react";
 import { useRef } from "react";
 import { EditorOutput } from "./EditorOutput";
 import { PostVoteClient } from "./postVote/PostVoteClient";
-import { buttonVariants } from "./ui/Button";
+import { Button, buttonVariants } from "./ui/Button";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { DeletePostPayload } from "@/lib/validators/post";
 import { useRouter } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
+import { revalidatePath } from "next/cache";
 
 type PartialVote = Pick<Vote, "type">;
 
@@ -51,12 +52,12 @@ export const PostComponent = ({
       });
     },
     onSuccess: async () => {
-      router.refresh();
-      return toast({
-        title: "Post deleted successfully",
-        description: "",
-        variant: "default",
-      });
+      // router.refresh();
+      // return toast({
+      //   title: "Post deleted successfully",
+      //   description: "",
+      //   variant: "default",
+      // });
     },
   });
   return (
@@ -109,12 +110,14 @@ export const PostComponent = ({
           </a>
           <hr />
           {post.authorId === session?.user.id ? (
-            <a
+            <Button
               className={`w-fit flex items-end gap-2 cursor-pointer `}
-              onClick={() => deletePost({ postId: post.id })}
+              onClick={() => {
+                deletePost({ postId: post.id });
+              }}
             >
               <TrashIcon className="h-4 w-4" />
-            </a>
+            </Button>
           ) : null}
         </div>
       </div>

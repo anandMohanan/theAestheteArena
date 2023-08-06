@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/Navbar";
 import { Toaster } from "@/components/ui/Toaster";
 import { Providers } from "@/components/Providers";
-
+import NextTopLoader from "nextjs-toploader";
 export const metadata = {
   title: "Taa",
   description:
@@ -29,6 +29,7 @@ export default function RootLayout({
     >
       <link rel="icon" href="/logo.png" type="image/icon type" />
       <body className="min-h-screen pt-12 bg-primary-colour antialiased">
+        <NextTopLoader color="#CC2737" showSpinner={false} crawl={false} />
         <Providers>
           {/* @ts-expect-error server component */}
           <Navbar />
