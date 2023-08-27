@@ -12,7 +12,6 @@ import {
 import { UserAvatar } from "./UserAvatar";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import Image from "next/image";
 
 interface UserDropdownProps {
   user: Pick<User, "name" | "image" | "email">;

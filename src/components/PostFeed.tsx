@@ -8,13 +8,13 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import { PostComponent } from "./Post";
-export const PostFeed = ({
-  initialPosts,
-  communityName,
-}: {
+
+interface PostFeedProps {
   initialPosts: ExtendedPost[];
   communityName?: string;
-}) => {
+}
+
+export const PostFeed = ({ initialPosts, communityName }: PostFeedProps) => {
   const { data: session } = useSession();
   const lastPostRef = useRef<HTMLElement>(null);
   const { ref, entry } = useIntersection({
@@ -46,43 +46,50 @@ export const PostFeed = ({
   }, [entry, fetchNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
-  return (
-    <ul className="flex flex-col col-span-2 space-y-6">
-      {posts.map((post, i) => {
-        const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === "UP") return acc + 1;
-          if (vote.type === "DOWN") return acc - 1;
-          return acc;
-        }, 0);
-        const currentVote = post.votes.find(
-          (vote) => vote.userId === session?.user.id
-        );
+  if (posts.length == 0) {
+    return (
+      <>
+        <h1 className="text-center">No posts in this community.</h1>
+      </>
+    );
+  } else
+    return (
+      <ul className="flex flex-col col-span-2 space-y-6">
+        {posts.map((post, i) => {
+          const votesAmt = post.votes.reduce((acc, vote) => {
+            if (vote.type === "UP") return acc + 1;
+            if (vote.type === "DOWN") return acc - 1;
+            return acc;
+          }, 0);
+          const currentVote = post.votes.find(
+            (vote) => vote.userId === session?.user.id
+          );
 
-        if (i === posts.length - 1) {
-          return (
-            <li key={post.id} ref={ref}>
+          if (i === posts.length - 1) {
+            return (
+              <li key={post.id} ref={ref}>
+                <PostComponent
+                  commentAmt={post.comments.length}
+                  communityName={post.community.name}
+                  post={post}
+                  currentVote={currentVote}
+                  votesAmt={votesAmt}
+                />
+              </li>
+            );
+          } else {
+            return (
               <PostComponent
                 commentAmt={post.comments.length}
                 communityName={post.community.name}
                 post={post}
                 currentVote={currentVote}
                 votesAmt={votesAmt}
+                key={post.id}
               />
-            </li>
-          );
-        } else {
-          return (
-            <PostComponent
-              commentAmt={post.comments.length}
-              communityName={post.community.name}
-              post={post}
-              currentVote={currentVote}
-              votesAmt={votesAmt}
-              key={post.id}
-            />
-          );
-        }
-      })}
-    </ul>
-  );
+            );
+          }
+        })}
+      </ul>
+    );
 };

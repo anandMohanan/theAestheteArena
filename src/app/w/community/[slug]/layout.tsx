@@ -57,13 +57,15 @@ const Layout = async ({
       <div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
           <div className="flex flex-col col-span-2 space-y-6">{children}</div>
-          <div className=" md:block overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
+          <div className=" md:block overflow-hidden h-fit rounded-lg border border-black bg-deep-champagne  order-first md:order-last">
             <div className="px-6 py-4">
-              <p className="font-semibold py-3">About w/{community.name}</p>
+              <p className="font-semibold py-3 underline decoration-wavy decoration-primary-text">
+                About {community.name}
+              </p>
             </div>
-            <dl className="divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-white">
+            <dl className=" px-6 py-4 text-sm leading-6 bg-deep-champagne">
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500">Created</dt>
+                <dt className="text-black">Created</dt>
                 <dd className="text-gary-700">
                   <time dateTime={community.createdAt.toDateString()}>
                     {format(community.createdAt, "MMMM d, yyyy ")}
@@ -71,14 +73,14 @@ const Layout = async ({
                 </dd>
               </div>
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500">Members</dt>
+                <dt className="text-black">Members</dt>
                 <dd className="text-gary-700">
                   <div className="text-gray-900">{memberCount}</div>
                 </dd>
               </div>
               {community.cretorId === session?.user.id ? (
                 <div className="flex justify-between gap-x-4 py-3">
-                  <p className="text-gray-500">You created this community.</p>
+                  <p className="text-black">You created this community.</p>
                 </div>
               ) : null}
 
@@ -93,7 +95,7 @@ const Layout = async ({
               {isSubscribed ? (
                 <Link
                   className={buttonVariants({
-                    variant: "outline",
+                    variant: "default",
                     className: "w-full mb-6",
                   })}
                   href={`w/community/${slug}/createPost`}

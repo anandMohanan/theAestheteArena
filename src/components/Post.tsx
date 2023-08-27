@@ -3,7 +3,6 @@
 import { formatTimeToNow } from "@/lib/utils";
 import { Post, User, Vote } from "@prisma/client";
 import { MessageSquare, TrashIcon } from "lucide-react";
-
 import { useRef } from "react";
 import { EditorOutput } from "./EditorOutput";
 import { PostVoteClient } from "./postVote/PostVoteClient";
@@ -14,17 +13,11 @@ import axios from "axios";
 import { DeletePostPayload } from "@/lib/validators/post";
 import { useRouter } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
-import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 type PartialVote = Pick<Vote, "type">;
 
-export const PostComponent = ({
-  communityName,
-  post,
-  commentAmt,
-  votesAmt,
-  currentVote,
-}: {
+interface PostComponentProps {
   communityName: string;
   post: Post & {
     author: User;
@@ -33,7 +26,15 @@ export const PostComponent = ({
   commentAmt: number;
   votesAmt: number;
   currentVote?: PartialVote;
-}) => {
+}
+
+export const PostComponent = ({
+  communityName,
+  post,
+  commentAmt,
+  votesAmt,
+  currentVote,
+}: PostComponentProps) => {
   const postRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   const router = useRouter();
@@ -62,7 +63,7 @@ export const PostComponent = ({
   });
   return (
     <div className="rounded-md bg-deep-champagne shadow border border-black border-double">
-      <div className="px-6 py-4 flex justify-between">
+      <div className="px-6 py-4 flex justify-between ">
         <PostVoteClient
           initialVotesAmt={votesAmt}
           postId={post.id}
@@ -110,14 +111,15 @@ export const PostComponent = ({
           </a>
           <hr />
           {post.authorId === session?.user.id ? (
-            <Button
+            <a
               className={`w-fit flex items-end gap-2 cursor-pointer `}
               onClick={() => {
                 deletePost({ postId: post.id });
               }}
+              href={"/"}
             >
               <TrashIcon className="h-4 w-4" />
-            </Button>
+            </a>
           ) : null}
         </div>
       </div>

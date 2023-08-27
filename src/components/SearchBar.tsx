@@ -14,7 +14,6 @@ import { Community, Prisma } from "@prisma/client";
 import { CommandEmpty } from "cmdk";
 import { usePathname, useRouter } from "next/navigation";
 import { Users } from "lucide-react";
-import Link from "next/link";
 import debounce from "lodash.debounce";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 

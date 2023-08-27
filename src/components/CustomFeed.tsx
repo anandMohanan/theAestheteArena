@@ -2,9 +2,11 @@ import { INFINITY_SCROLLING_PAGINATION_VALUE } from "@/config";
 import { db } from "@/lib/db";
 import { PostFeed } from "./PostFeed";
 import { getAuthSession } from "@/lib/auth";
+import { GeneralFeed } from "./GeneralFeed";
+import { getServerSession } from "next-auth";
 
 export const CustomFeed = async () => {
-  const session = await getAuthSession();
+  const session = await getServerSession();
 
   const followedCommunities = await db.subscription.findMany({
     where: {
@@ -33,6 +35,12 @@ export const CustomFeed = async () => {
     },
     take: INFINITY_SCROLLING_PAGINATION_VALUE,
   });
-
-  return <PostFeed initialPosts={posts} />;
+  if (posts.length == 0) {
+    return (
+      // @ts-expect-error server component
+      <GeneralFeed />
+    );
+  } else {
+    return <PostFeed initialPosts={posts} />;
+  }
 };

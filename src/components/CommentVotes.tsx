@@ -12,7 +12,6 @@ import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 
-// type PrtilVote
 interface PostCommentVoteClientProps {
   commentId: string;
   initialVotesAmt: number;

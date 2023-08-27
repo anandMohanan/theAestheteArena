@@ -9,15 +9,17 @@ import { toast } from "@/hooks/use-toast";
 import { startTransition } from "react";
 import { useRouter } from "next/navigation";
 
+interface SubscribeLeaveToggleProps {
+  communityId: string;
+  communityName: string;
+  isSubscribed: boolean;
+}
+
 export const SubscribeLeaveToggle = ({
   communityId,
   communityName,
   isSubscribed,
-}: {
-  communityId: string;
-  communityName: string;
-  isSubscribed: boolean;
-}) => {
+}: SubscribeLeaveToggleProps) => {
   const { loginToast } = useCustomToast();
   const router = useRouter();
   const { mutate: subscribeToCommunity, isLoading: isSubscriptionLoading } =

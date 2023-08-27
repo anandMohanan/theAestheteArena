@@ -1,4 +1,3 @@
-import { MiniCreatePost } from "@/components/MiniCreatePost";
 import { PostFeed } from "@/components/PostFeed";
 import { INFINITY_SCROLLING_PAGINATION_VALUE } from "@/config";
 import { getAuthSession } from "@/lib/auth";
@@ -56,8 +55,8 @@ const page = async ({ params }: PageProps) => {
   if (!community) return notFound();
   return (
     <>
-      <h1 className="font-bold text-3xl md:text-4xl h-14">
-        w/{community.name}
+      <h1 className="font-bold text-3xl md:text-4xl h-14 underline decoration-wavy decoration-primary-text">
+        {community.name}
       </h1>
       {isSubscribed ? null : (
         // <li className="overflow-hidden rounded-md bg-white shadow">

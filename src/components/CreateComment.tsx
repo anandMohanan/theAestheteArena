@@ -10,13 +10,12 @@ import axios, { AxiosError } from "axios";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { useRouter } from "next/navigation";
 
-export const CreateComment = ({
-  postId,
-  replyToId,
-}: {
+interface CreateCommentProps {
   postId: string;
   replyToId?: string;
-}) => {
+}
+
+export const CreateComment = ({ postId, replyToId }: CreateCommentProps) => {
   const [input, setInput] = useState<string>("");
   const { loginToast } = useCustomToast();
   const router = useRouter();
@@ -55,6 +54,7 @@ export const CreateComment = ({
           onChange={(e) => setInput(e.target.value)}
           rows={1}
           placeholder="What are your thoughts"
+          className="border-none"
         />
         <div className="mt-2 flex justify-end">
           <Button

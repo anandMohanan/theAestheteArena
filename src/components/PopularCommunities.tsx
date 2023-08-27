@@ -1,10 +1,8 @@
-import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { buttonVariants } from "./ui/Button";
 
 export const PopularCommunities = async () => {
-  const session = await getAuthSession();
   const communityNames = await db.community.findMany({
     orderBy: {
       subscriber: {
@@ -23,7 +21,7 @@ export const PopularCommunities = async () => {
           Popular communities
         </p>
       </div>
-      <dl className="-my-3  divide-y bg-deep-champagne divide-primary-text px-6 py-4 text-sm leading-6">
+      <dl className="-my-3   bg-deep-champagne  px-6 py-4 text-sm leading-6">
         {communityNames.map((community) => {
           return (
             <Link

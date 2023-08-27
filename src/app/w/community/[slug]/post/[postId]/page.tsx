@@ -51,9 +51,9 @@ const CommunityPostPage = async ({ params }: CommunityPostPageProps) => {
 
   return (
     <div>
-      <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between">
+      <div className=" flex flex-col sm:flex-row items-center sm:items-start justify-between">
         <Suspense fallback={<PostVoteShell />}>
-          {/* @ts-expect-error server component */}
+          {/* @ts-expect-error Server Component */}
           <PostVoteServer
             postId={post?.id ?? cachedPost.id}
             getData={async () => {
@@ -69,7 +69,7 @@ const CommunityPostPage = async ({ params }: CommunityPostPageProps) => {
           />
         </Suspense>
 
-        <div className="sm:w-0 w-full flex-1 bg-white p-4 rounded-sm">
+        <div className="sm:w-0 w-full flex-1 bg-deep-champagne p-4 rounded-sm">
           <p className="max-h-40 mt-1 truncate text-xs text-gray-500">
             Posted by w/{post?.author.username ?? cachedPost.authorUsername}{" "}
             {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}

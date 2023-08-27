@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User } from "@prisma/client";
+import { Community, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/Label";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { UsernameValidator } from "@/lib/validators/username";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 
 import Link from "next/link";
@@ -42,6 +42,10 @@ interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
 type FormData = z.infer<typeof UsernameValidator>;
 
 export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
+  const [content, setContent] = React.useState("helloooo");
+  const handleContentChange = (e: any) => {
+    setContent(e.target.innerText);
+  };
   const router = useRouter();
   const {
     handleSubmit,
@@ -64,6 +68,15 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     // setAvatarUrl(res.fileUrl);
     // updateUseravatar({ fileUrl: res.fileUrl });
   };
+
+  const { data: OwnedCommunities } = useQuery({
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/community/fetch`);
+      console.log(data);
+
+      return data as Community[];
+    },
+  });
 
   const { mutate: updateUseravatar, isLoading: isAvatarLoading } = useMutation({
     mutationFn: async () => {
@@ -203,13 +216,12 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
         </Card>
       </form>
       <Card className="bg-deep-champagne border-black">
-        <div className="ml-6">
-          <CardHeader>
-            <CardTitle>Your display image</CardTitle>
-            <CardDescription>Please choose a display image.</CardDescription>
-          </CardHeader>
+        <CardHeader>
+          <CardTitle>Your display image</CardTitle>
+          <CardDescription>Please choose a display image.</CardDescription>
+        </CardHeader>
 
-          {/* <UserAvatar
+        {/* <UserAvatar
                 className="h-8 w-8"
                 // user={{
                 //   name: user.name || null,
@@ -219,36 +231,67 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
                   image: user.image,
                 }}
               /> */}
-          <UserAvatar
-            className="h-8 w-8 ml-6"
-            user={{
-              name: user.name || null,
-              image: user.image || null,
-            }}
-          />
-          {/* <input type="file" /> */}
+        <UserAvatar
+          className="h-8 w-8 ml-6"
+          user={{
+            name: user.name || null,
+            image: user.image || null,
+          }}
+        />
+        {/* <input type="file" /> */}
 
-          <Input
-            className="w-[400px] pl-6 ml-6 mt-6 mb-6 border-black"
-            type="file"
-            onChange={(e) => {
-              handleUpload(e);
-            }}
-          />
-          <Button
-            isLoading={isAvatarLoading}
-            onClick={() => updateUseravatar()}
-            className="ml-6 mr-4 mb-6"
+        <Input
+          className="w-[400px] pl-6 ml-6 mt-6 mb-6 border-black"
+          type="file"
+          onChange={(e) => {
+            handleUpload(e);
+          }}
+        />
+        <Button
+          isLoading={isAvatarLoading}
+          onClick={() => updateUseravatar()}
+          className="ml-6 mr-4 mb-6"
+        >
+          Update Avatar
+        </Button>
+        <Button
+          isLoading={isRemoveAvatarLoading}
+          onClick={() => removeUseravatar({ userId: user.id })}
+        >
+          Remove Avatar
+        </Button>
+      </Card>
+      <Card className="bg-deep-champagne border-black">
+        <CardHeader>
+          <CardTitle>Communities you own</CardTitle>
+          <CardDescription>
+            You can edit or delete your community here.
+          </CardDescription>
+        </CardHeader>
+
+        {/* <UserAvatar
+                className="h-8 w-8"
+                // user={{
+                //   name: user.name || null,
+                //   image: user.image || null,
+                // }}
+                user={{
+                  image: user.image,
+                }}
+              /> */}
+
+        {/* <input type="file" /> */}
+        {OwnedCommunities?.map((community) => (
+          <p
+            contentEditable={true}
+            onInput={handleContentChange}
+            onBlur={() => console.log("blur")}
+            className="w-40 focus:outline-none"
+            key={community.id}
           >
-            Update Avatar
-          </Button>
-          <Button
-            isLoading={isRemoveAvatarLoading}
-            onClick={() => removeUseravatar({ userId: user.id })}
-          >
-            Remove Avatar
-          </Button>
-        </div>
+            {community.name}
+          </p>
+        ))}
       </Card>
     </>
   );

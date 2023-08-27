@@ -39,7 +39,10 @@ const style = {
   },
 };
 
-export const EditorOutput = ({ content }: { content: any }) => {
+interface EditorOutputProps {
+  content: any;
+}
+export const EditorOutput = ({ content }: EditorOutputProps) => {
   return (
     <Output
       data={content}

@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     });
 
     if (!subscriptionExists) {
-      return new Response("You are not subscribed to this subreddit.", {
+      return new Response("You are not subscribed to this community.", {
         status: 400,
       });
     }

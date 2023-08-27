@@ -102,9 +102,9 @@ export const PostVoteClient = ({
       <Button
         onClick={() => vote("DOWN")}
         size="sm"
-        // className={cn({
-        //   "text-emerald-500": currentVote === "DOWN",
-        // })}
+        className={cn({
+          "text-emerald-500": currentVote === "DOWN",
+        })}
         variant="ghost"
         aria-label="downvote"
       >

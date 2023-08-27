@@ -15,7 +15,6 @@ export const GeneralFeed = async () => {
     },
     take: INFINITY_SCROLLING_PAGINATION_VALUE,
   });
-  console.log(posts);
 
   if (posts.length == 0) {
     return (
@@ -26,5 +25,4 @@ export const GeneralFeed = async () => {
   } else {
     return <PostFeed initialPosts={posts} />;
   }
-  //   return <h1>hi</h1>;
 };

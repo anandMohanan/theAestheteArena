@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { Postcomment } from "./PostComment";
 import { CreateComment } from "./CreateComment";
 
-export const CommentsSection = async ({ postId }: { postId: string }) => {
+interface CommentsSectionProps {
+  postId: string;
+}
+export const CommentsSection = async ({ postId }: CommentsSectionProps) => {
   const session = await getAuthSession();
 
   const comments = await db.comment.findMany({

@@ -25,7 +25,6 @@ const FormSchema = z.object({
   content: z.any(),
 });
 
-// Define the TypeScript type using `z.infer`
 type FormData = z.infer<typeof FormSchema>;
 
 interface EditorProps {
@@ -70,7 +69,6 @@ export const Editor: React.FC<EditorProps> = ({ communityId }) => {
       });
     },
     onSuccess: () => {
-      // turn pathname /r/mycommunity/submit into /r/mycommunity
       const newPathname = pathname.split("/").slice(0, -1).join("/");
       router.push(newPathname);
 
@@ -200,12 +198,8 @@ export const Editor: React.FC<EditorProps> = ({ communityId }) => {
   const { ref: titleRef, ...rest } = register("title");
 
   return (
-    <div className="w-full p-4 bg-zinc-50 rounded-lg border border-zinc-200">
-      <form
-        id="subreddit-post-form"
-        className="w-fit"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+    <div className="w-full p-4 bg-deep-champagne rounded-lg border border-zinc-200">
+      <form id="post-form" className="w-fit" onSubmit={handleSubmit(onSubmit)}>
         <div className="prose prose-stone dark:prose-invert">
           <TextareaAutosize
             ref={(e) => {
@@ -215,12 +209,12 @@ export const Editor: React.FC<EditorProps> = ({ communityId }) => {
             }}
             {...rest}
             placeholder="Title"
-            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
+            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none text-primary-text"
           />
           <div id="editor" className="min-h-[500px]" />
           <p className="text-sm text-gray-500">
             Use{" "}
-            <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
+            <kbd className="rounded-md border bg-muted px-1 text-xs uppercase text-primary-text">
               Tab
             </kbd>{" "}
             to open the command menu.
